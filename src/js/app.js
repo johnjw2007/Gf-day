@@ -2,6 +2,7 @@
    Girlfriend's Day — Main Orchestrator & App Initialization
    ========================================================================== */
 
+import { inject } from '@vercel/analytics';
 import { CanvasEngine } from './canvasParticles.js';
 import { AudioPlayer } from './audioPlayer.js';
 import { loadConfigIntoDOM } from './configLoader.js';
@@ -9,6 +10,9 @@ import { initGiftsLogic } from './giftsLogic.js';
 import { QuizEngine } from './quizEngine.js';
 import { initLoveMachine } from './loveMachine.js';
 import { initMysteryBoxes } from './mysteryBoxes.js';
+
+// Initialize Vercel Analytics
+inject();
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Core Engines
