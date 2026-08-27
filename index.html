@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy Girlfriend's Day, My Love 💗🎀</title>
+  <meta name="description" content="A magical interactive romantic journey created just for you. Happy Girlfriend's Day!" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./src/styles/main.css">
+  <link rel="stylesheet" href="./src/styles/components.css">
+  <link rel="stylesheet" href="./src/styles/animations.css">
+  <link rel="stylesheet" href="./src/styles/gifts.css">
+</head>
+<body>
+
+  <!-- Background Ambient Particle Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Sticky Global Floating Audio Bar -->
+  <div id="sticky-audio-bar" class="sticky-audio hidden">
+    <div class="audio-left">
+      <div class="vinyl-record" id="sticky-vinyl">
+        <div class="record-center"></div>
+      </div>
+      <div class="audio-info">
+        <span class="audio-title" id="sticky-song-title">Blood, Sweat & Tears 🎶</span>
+        <span class="audio-status" id="sticky-song-status">Tap play to listen</span>
+      </div>
+    </div>
+    <div class="audio-right">
+      <button class="btn-icon" id="sticky-play-btn" aria-label="Play Music">
+        <span id="play-icon">▶️</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Audio Element -->
+  <audio id="bg-music" loop crossorigin="anonymous"></audio>
+
+  <!-- APP CONTAINER -->
+  <div id="app">
+
+    <!-- 1. WELCOME SCREEN (Full Screen Overlay) -->
+    <section id="welcome-screen" class="welcome-overlay">
+      <div class="welcome-card glassmorphism">
+        <div class="heart-pulse-icon">💖</div>
+        <h1 class="welcome-line line-1" id="welcome-text-1">Hey Beautiful... 💕</h1>
+        <p class="welcome-line line-2" id="welcome-text-2">I made something special just for you.</p>
+        <p class="welcome-line line-3" id="welcome-text-3">Because you deserve more than just a Happy Girlfriend's Day message. 🥹🎀</p>
+        
+        <button id="open-surprise-btn" class="glow-btn pulse-anim">
+          <span>Open Your Surprise 🎁</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- MAIN HUB (Hidden until Welcome screen opened) -->
+    <main id="main-content" class="main-container hidden">
+
+      <!-- HEADER / HERO GIFT BOX -->
+      <section id="hero-gift-section" class="hero-section">
+        <div class="section-badge">Happy Girlfriend's Day 🎀</div>
+        <h2 class="hero-title">Your gifts are waiting... 🎀</h2>
+        <p class="hero-subtitle">Click the magical gift box below to open your surprises!</p>
+
+        <!-- Main Gift Box Hub Component -->
+        <div id="main-gift-box" class="gift-box-wrapper wiggle-anim">
+          <div class="gift-box-lid">
+            <div class="gift-bow">🎀</div>
+          </div>
+          <div class="gift-box-body">
+            <div class="gift-ribbon-v"></div>
+            <div class="gift-ribbon-h"></div>
+            <span class="gift-box-sparkles">✨💕✨</span>
+          </div>
+        </div>
+        <p class="tap-hint">👇 Tap the gift box to open! 👇</p>
+
+        <!-- Unlocked Progress Tracker -->
+        <div class="gift-progress-card glassmorphism">
+          <div class="progress-header">
+            <span>Surprises Unlocked</span>
+            <span id="unlocked-count">0 / 7 Unlocked</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. THE 7 DIGITAL GIFTS GRID -->
+      <section id="gifts-grid-section" class="gifts-section">
+        <h2 class="section-heading">Surprise Box Treasures 🎁</h2>
+
+        <div class="gifts-grid">
+          
+          <!-- Gift 1 Card: Love Letter -->
+          <div class="gift-card glassmorphism" id="gift-card-1" data-gift="1">
+            <div class="gift-badge">Gift 1</div>
+            <div class="gift-icon">💌</div>
+            <h3>Open When You Need Love 💌</h3>
+            <p>A handwritten letter straight from my heart.</p>
+            <button class="btn-secondary">Open Letter ✨</button>
+          </div>
+
+          <!-- Gift 2 Card: Virtual Teddy -->
+          <div class="gift-card glassmorphism" id="gift-card-2" data-gift="2">
+            <div class="gift-badge">Gift 2</div>
+            <div class="gift-icon">🧸</div>
+            <h3>A Teddy Just For You 🧸</h3>
+            <p>Sent here to give you endless cute hugs!</p>
+            <button class="btn-secondary">Meet Teddy 🤗</button>
+          </div>
+
+          <!-- Gift 3 Card: Flowers -->
+          <div class="gift-card glassmorphism" id="gift-card-3" data-gift="3">
+            <div class="gift-badge">Gift 3</div>
+            <div class="gift-icon">🌷</div>
+            <h3>Flowers For My Flower 🌷</h3>
+            <p>Blooming roses with sweet hidden notes.</p>
+            <button class="btn-secondary">Bloom Bouquet 🌸</button>
+          </div>
+
+          <!-- Gift 4 Card: Chocolate Box -->
+          <div class="gift-card glassmorphism" id="gift-card-4" data-gift="4">
+            <div class="gift-badge">Gift 4</div>
+            <div class="gift-icon">🍫</div>
+            <h3>A Box of Happiness 🍫</h3>
+            <p>Delicious chocolates with sweet surprises inside.</p>
+            <button class="btn-secondary">Taste Chocolates 😋</button>
+          </div>
+
+          <!-- Gift 5 Card: Coupon Book -->
+          <div class="gift-card glassmorphism" id="gift-card-5" data-gift="5">
+            <div class="gift-badge">Gift 5</div>
+            <div class="gift-icon">🎟️</div>
+            <h3>Unlimited Love Coupons 🎟️</h3>
+            <p>Choose wisely! You can redeem only 1 special coupon! 💕</p>
+            <button class="btn-secondary">Open Coupons 🎟️</button>
+          </div>
+
+          <!-- Gift 6 Card: Love Songs & Playlist -->
+          <div class="gift-card glassmorphism" id="gift-card-6" data-gift="6">
+            <div class="gift-badge">Gift 6</div>
+            <div class="gift-icon">🎧</div>
+            <h3>Press Play 🎧</h3>
+            <p>BTS - Blood, Sweat & Tears + Justin Bieber - Love Me! 🎶</p>
+            <button class="btn-secondary">Play Playlist 🎧</button>
+          </div>
+
+          <!-- Gift 7 Card: Secret Lock -->
+          <div class="gift-card glassmorphism" id="gift-card-7" data-gift="7">
+            <div class="gift-badge">Gift 7</div>
+            <div class="gift-icon">🔐</div>
+            <h3>Secret Gift 🔐💕</h3>
+            <p>Protected by a secret romantic passcode!</p>
+            <button class="btn-secondary">Unlock Secret 🔑</button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 9. COUPLE & BESTIE QUIZ SECTION -->
+      <section id="quiz-section" class="quiz-section">
+        <div class="quiz-container glassmorphism">
+          <div class="quiz-header">
+            <span class="quiz-badge">Interactive Quiz 💗</span>
+            <h2>How Well Do You Know Me? 👀</h2>
+            <p class="quiz-subtext">25 Bestie + Flirty Questions • Every answer has a cute reaction!</p>
+            <div class="quiz-progress-bar">
+              <div id="quiz-progress-fill" style="width: 4%"></div>
+            </div>
+            <span id="quiz-step-label" class="step-label">Question 1 of 25</span>
+          </div>
+
+          <!-- Active Question Box -->
+          <div id="quiz-question-box" class="question-box">
+            <h3 id="quiz-question-text" class="question-text">Loading question...</h3>
+            <div id="quiz-options-container" class="options-grid">
+              <!-- Dynamically populated options -->
+            </div>
+          </div>
+
+          <!-- Reaction Feedback Box -->
+          <div id="quiz-reaction-modal" class="reaction-box hidden">
+            <div class="reaction-content">
+              <span id="reaction-emoji" class="reaction-emoji">💬</span>
+              <p id="reaction-text" class="reaction-text">Reaction message...</p>
+              <button id="next-question-btn" class="glow-btn-sm">Next Question ➡️</button>
+            </div>
+          </div>
+
+          <!-- Quiz Completion Award Screen -->
+          <div id="quiz-complete-card" class="quiz-complete hidden">
+            <div class="award-ribbon">🏆 OFFICIAL CERTIFICATE 🏆</div>
+            <h3>💕 GIRLFRIEND SCORE: 100/100 💕</h3>
+            <p class="award-desc">Officially certified as the cutest girlfriend & favorite bestie ever! 🎀</p>
+            <p class="award-quote" id="quiz-ending-quote">"You came here as my bestie... but you're also my favorite person to annoy, tease, laugh with, talk to, and make blush. 😏😂❤️"</p>
+            <p class="award-footer">Happy Girlfriend's Day, Bestie! 🎀 You're stuck with me now. No refunds. 😂🫶</p>
+            <button id="claim-reward-btn" class="glow-btn pulse-anim">🎁 Claim Your Bestie Reward</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. REASONS I LOVE YOU MACHINE -->
+      <section id="love-machine-section" class="machine-section">
+        <div class="machine-card glassmorphism">
+          <div class="machine-icon">🎰💗</div>
+          <h2>"Reasons I Love You" Machine 💗</h2>
+          <p>Tap the glowing button to dispense a sweet reason!</p>
+
+          <div id="reason-display" class="reason-display-box">
+            <span class="heart-sparkle-left">💖</span>
+            <p id="reason-text">Click the button below to see why you're so loved... 💕</p>
+            <span class="heart-sparkle-right">💖</span>
+          </div>
+
+          <button id="dispense-reason-btn" class="glow-btn">
+            <span>Give Me A Reason 💕</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 11. PICK A SURPRISE (3 MYSTERY BOXES) -->
+      <section id="mystery-boxes-section" class="mystery-section">
+        <h2>Pick A Surprise 🎁</h2>
+        <p>Three mystery boxes. Only one unlocks the grand real-life date! 🍀</p>
+
+        <div class="mystery-grid">
+          <div class="mystery-box glassmorphism" data-box="A">
+            <div class="box-inner">
+              <span class="box-icon">🎁</span>
+              <h4>Box A</h4>
+              <p>Open Me</p>
+            </div>
+          </div>
+
+          <div class="mystery-box glassmorphism" data-box="B">
+            <div class="box-inner">
+              <span class="box-icon">🎁</span>
+              <h4>Box B</h4>
+              <p>Definitely Not Suspicious 👀</p>
+            </div>
+          </div>
+
+          <div class="mystery-box glassmorphism" data-box="C">
+            <div class="box-inner">
+              <span class="box-icon">🍀</span>
+              <h4>Box C</h4>
+              <p>Your Luckiest Choice 🍀</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12. FUTURE MEMORIES -->
+      <section id="future-memories-section" class="future-section">
+        <h2 class="section-heading">Memories We Haven't Made Yet... 🌙</h2>
+        <p class="section-subtext">These spaces are waiting for us to fill them with memories. 🥹❤️</p>
+
+        <div id="future-grid" class="future-grid">
+          <!-- Dynamically generated future polaroids -->
+        </div>
+      </section>
+
+      <!-- 13. FINAL SURPRISE UNLOCK BANNER -->
+      <section id="final-surprise-banner" class="final-banner-section">
+        <div class="final-card glassmorphism">
+          <div class="glowing-heart-icon">💖</div>
+          <h2>All Gifts Explored! 💕</h2>
+          <p>Ready for the grand finale made just for you?</p>
+          <button id="final-surprise-btn" class="glow-btn pulse-anim">
+            <span>One Last Surprise ❤️</span>
+          </button>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- MODALS CONTAINER FOR THE GIFTS -->
+  
+  <!-- Modal 1: Love Letter -->
+  <div id="modal-gift-1" class="modal-overlay hidden">
+    <div class="modal-card letter-modal glassmorphism">
+      <button class="modal-close-btn">&times;</button>
+      
+      <div id="envelope" class="envelope-wrapper">
+        <div class="envelope-back"></div>
+        <div class="envelope-letter">
+          <div class="letter-content handwritten-font">
+            <h3 id="letter-salutation">Dear my favorite person,</h3>
+            <div id="letter-body"></div>
+            <p id="letter-closing" class="letter-closing">Happy Girlfriend's Day, my love. ❤️</p>
+          </div>
+        </div>
+        <div class="envelope-front"></div>
+        <div class="envelope-seal" id="envelope-seal">💌 Click Seal</div>
+      </div>
+
+      <button id="keep-letter-btn" class="btn-primary" style="margin-top: 15px;">Keep This Forever 💕</button>
+    </div>
+  </div>
+
+  <!-- Modal 2: Virtual Teddy Bear -->
+  <div id="modal-gift-2" class="modal-overlay hidden">
+    <div class="modal-card teddy-modal glassmorphism">
+      <button class="modal-close-btn">&times;</button>
+      
+      <div class="teddy-container">
+        <div id="teddy-bear" class="animated-teddy">
+          <div class="teddy-ear left"></div>
+          <div class="teddy-ear right"></div>
+          <div class="teddy-head">
+            <div class="teddy-eye left"></div>
+            <div class="teddy-eye right"></div>
+            <div class="teddy-blush left"></div>
+            <div class="teddy-blush right"></div>
+            <div class="teddy-muzzle">
+              <div class="teddy-nose"></div>
+            </div>
+          </div>
+          <div class="teddy-body">
+            <div class="teddy-belly">💖</div>
+            <div class="teddy-arm left-arm"></div>
+            <div class="teddy-arm right-arm"></div>
+          </div>
+        </div>
+
+        <div class="speech-bubble" id="teddy-speech">
+          <p id="teddy-text-1">Hi cutie! 🥺💕</p>
+          <p id="teddy-text-2">I was sent here to give you unlimited hugs.</p>
+        </div>
+
+        <div class="teddy-actions">
+          <button id="teddy-hug-btn-1" class="btn-primary">Give Me a Hug 🤗</button>
+          <button id="teddy-hug-btn-2" class="btn-secondary">Another Hug 🥹</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Never-Ending Flowers -->
+  <div id="modal-gift-3" class="modal-overlay hidden">
+    <div class="modal-card flowers-modal glassmorphism">
+      <button class="modal-close-btn">&times;</button>
+      
+      <h2>Flowers For My Flower 🌷</h2>
+      <p class="flower-header-text">These flowers may fade... but my love for you won't. ❤️</p>
+      <p class="flower-subtext">Click each blooming flower to reveal hidden messages!</p>
+
+      <div id="bouquet-container" class="bouquet-grid">
+        <!-- Dynamically rendered flowers -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Chocolate Box -->
+  <div id="modal-gift-4" class="modal-overlay hidden">
+    <div class="modal-card chocolate-modal glassmorphism">
+      <button class="modal-close-btn">&times;</button>
+      
+      <h2>A Box of Happiness 🍫</h2>
+      <p>Pick a chocolate to taste its sweet surprise!</p>
+
+      <div id="chocolate-grid" class="chocolate-box-grid">
+        <!-- Dynamically rendered chocolates -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: Coupon Book -->
+  <div id="modal-gift-5" class="modal-overlay hidden">
+    <div class="modal-card coupon-modal glassmorphism">
+      <button class="modal-close-btn">&times;</button>
+      
+      <h2>Your Unlimited Love Coupons 🎟️</h2>
+      <p style="color: var(--primary-deep); font-weight: 600;">Choose carefully! You can redeem only 1 special coupon! 💕</p>
+
+      <div id="coupons-container" class="coupons-list">
+        <!-- Dynamically rendered coupons -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 6: Our Playlist & Love Songs -->
+  <div id="modal-gift-6" class="modal-overlay hidden">
+    <div class="modal-card song-modal glassmorphism">
+      <button class="modal-close-btn">&times;</button>
+      
+      <h2>Our Favorite Playlist 🎶</h2>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">Switch between your favorite tracks below!</p>
+      
+      <div class="playlist-switcher" style="margin: 15px 0; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <button id="track-btn-bst" class="btn-secondary track-select-btn active-track">BTS - Blood, Sweat & Tears 🩸</button>
+        <button id="track-btn-loveme" class="btn-secondary track-select-btn">Justin Bieber - Love Me 🎧</button>
+      </div>
+
+      <div class="song-card-content">
+        <div class="music-art-wrapper">
+          <img id="modal-album-art" src="" alt="Album Art" class="album-art-img" />
+          <div class="vinyl-overlay"></div>
+        </div>
+
+        <h3 id="modal-song-title" class="song-name">Blood, Sweat & Tears 🎶</h3>
+        <p id="modal-artist" class="song-artist">BTS</p>
+
+        <p id="modal-quote" class="song-quote">"My blood, sweat, and tears... my body, mind, and soul belong to you. ❤️"</p>
+
+        <div class="audio-controls">
+          <button id="modal-play-btn" class="glow-btn">
+            <span id="modal-play-text">▶️ Play Track</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 7: Secret Love Lock -->
+  <div id="modal-gift-7" class="modal-overlay hidden">
+    <div class="modal-card lock-modal glassmorphism">
+      <button class="modal-close-btn">&times;</button>
+      
+      <div id="lock-unlocked-content" class="hidden">
+        <div class="big-heart-unlock">💖</div>
+        <h2>You found the secret! 🥹❤️</h2>
+        <p class="secret-reveal-text">
+          "My biggest gift isn't inside this website...<br><br>
+          <strong>It's every future memory I want to make with you.</strong>"
+        </p>
+      </div>
+
+      <div id="lock-locked-content">
+        <div class="heart-lock-icon" id="heart-lock-visual">🔐💕</div>
+        <h2>Enter the Secret Passcode...</h2>
+        <p class="lock-hint-text" id="lock-hint">Hint: Most used word 💕</p>
+
+        <form id="secret-lock-form" class="lock-form">
+          <input type="text" id="secret-input" placeholder="Type passcode here..." autocomplete="off" />
+          <button type="submit" class="btn-primary">Unlock 🔑</button>
+        </form>
+        <p id="lock-error" class="lock-error-msg hidden">Oops! Incorrect passcode. Try again! 🥺</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bestie Reward Modal (From Quiz) -->
+  <div id="modal-bestie-reward" class="modal-overlay hidden">
+    <div class="modal-card glassmorphism">
+      <button class="modal-close-btn">&times;</button>
+      <div class="reward-content text-center">
+        <div class="reward-icon">🎁👑</div>
+        <h2>Bestie Reward Claimed! 💕</h2>
+        <p class="reward-text">"Your reward: One real-life hangout / date night with me. 😏💕"</p>
+        <div class="reward-btns">
+          <button class="btn-primary reward-action-btn">Obviously 😌❤️</button>
+          <button class="btn-secondary reward-action-btn">Let's Go 😂</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13. GRAND FINAL SURPRISE SCREEN -->
+  <div id="final-grand-screen" class="final-overlay hidden">
+    <div class="final-content-box">
+      <div class="final-text-seq">
+        <p class="final-line f-line-1">Out of all the gifts in this world...</p>
+        <p class="final-line f-line-2">...my favorite one is YOU. 🥹❤️</p>
+        <h1 class="final-name" id="final-girlfriend-name">Happy Girlfriend's Day, My Love 🎀</h1>
+        <p class="final-line f-line-3">"And if I could choose again..."</p>
+        <p class="final-line f-line-4">"I'd still choose you. Every single time. ❤️"</p>
+      </div>
+
+      <!-- 14. FINAL RESTART BUTTON -->
+      <button id="restart-story-btn" class="glow-btn pulse-anim" style="margin-top: 35px;">
+        <span>Start Our Story Again 💕</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="./src/js/app.js"></script>
+</body>
+</html>

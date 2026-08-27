@@ -1,0 +1,1174 @@
+/* ==========================================================================
+   Girlfriend's Day — Feature & Gift Component Specific Styles
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. WELCOME SCREEN
+   -------------------------------------------------------------------------- */
+.welcome-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 550;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: radial-gradient(circle at center, #FFF0F5 0%, #FFE4E1 60%, #FFCCD5 100%);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.welcome-card {
+  max-width: 540px;
+  width: 100%;
+  padding: 40px 28px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.welcome-card h1 {
+  font-family: var(--font-handwriting);
+  font-size: 3rem;
+  color: var(--primary-deep);
+  line-height: 1.2;
+}
+
+.welcome-card p {
+  font-size: 1.15rem;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.welcome-line {
+  opacity: 0;
+  animation: revealLine 0.8s ease-out forwards;
+}
+
+.line-1 { animation-delay: 0.3s; }
+.line-2 { animation-delay: 1.1s; }
+.line-3 { animation-delay: 1.9s; }
+#open-surprise-btn { animation-delay: 2.7s; margin-top: 10px; }
+
+/* --------------------------------------------------------------------------
+   2. HERO DIGITAL GIFT BOX
+   -------------------------------------------------------------------------- */
+.hero-section {
+  text-align: center;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.hero-title {
+  font-family: var(--font-playful);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary-deep);
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+
+/* Wiggling Main Gift Box Graphic */
+.gift-box-wrapper {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 20px 0;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.gift-box-body {
+  width: 100%;
+  height: 120px;
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-soft) 100%);
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(255, 77, 109, 0.4);
+  overflow: hidden;
+}
+
+.gift-ribbon-v {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 100%;
+  background: var(--gold-accent);
+}
+
+.gift-ribbon-h {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 28px;
+  background: var(--gold-accent);
+}
+
+.gift-box-lid {
+  position: absolute;
+  top: 20px;
+  left: -8px;
+  width: 176px;
+  height: 38px;
+  background: linear-gradient(135deg, #FF6584 0%, var(--primary-pink) 100%);
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease;
+}
+
+.gift-bow {
+  font-size: 2.2rem;
+  margin-top: -24px;
+}
+
+.tap-hint {
+  font-family: var(--font-playful);
+  font-weight: 600;
+  color: var(--primary-pink);
+  font-size: 0.95rem;
+  animation: floatY 2s ease-in-out infinite;
+}
+
+.gift-progress-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 16px 20px;
+  margin-top: 10px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-playful);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--primary-light);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-pink) 0%, var(--gold-accent) 100%);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+/* --------------------------------------------------------------------------
+   3. THE 8 GIFTS GRID
+   -------------------------------------------------------------------------- */
+.gifts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.gift-card {
+  padding: 24px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.gift-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(255, 77, 109, 0.25);
+  border-color: var(--primary-pink);
+}
+
+.gift-icon {
+  font-size: 3rem;
+  margin: 6px 0;
+  transition: transform 0.3s ease;
+}
+
+.gift-card:hover .gift-icon {
+  transform: scale(1.2) rotate(6deg);
+}
+
+.gift-card h3 {
+  font-family: var(--font-playful);
+  font-size: 1.15rem;
+  color: var(--text-dark);
+}
+
+.gift-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.gift-card.unlocked-card::after {
+  content: "✓ Opened 💕";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--primary-pink);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-family: var(--font-playful);
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   GIFT 1: LOVE LETTER ENVELOPE MODAL
+   -------------------------------------------------------------------------- */
+.envelope-wrapper {
+  position: relative;
+  width: 280px;
+  height: 190px;
+  margin: 20px auto;
+  perspective: 600px;
+}
+
+.envelope-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #FF85A1;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.envelope-front {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 140px solid #FF6584;
+  border-right: 140px solid #FF6584;
+  border-bottom: 110px solid #FF4D6D;
+  border-top: 80px solid transparent;
+  border-radius: 0 0 12px 12px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.envelope-seal {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #C9184A;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-family: var(--font-playful);
+  font-size: 0.85rem;
+  cursor: pointer;
+  z-index: 4;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.envelope-seal:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.envelope-letter {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  left: 5%;
+  top: 5%;
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 16px;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow-y: auto;
+}
+
+.envelope-wrapper.open .envelope-letter {
+  transform: translateY(-110px) scale(1.1);
+  height: 260px;
+  z-index: 5;
+}
+
+.handwritten-font {
+  font-family: var(--font-handwriting);
+  font-size: 1.35rem;
+  color: var(--text-dark);
+  line-height: 1.5;
+  text-align: left;
+}
+
+.letter-closing {
+  margin-top: 15px;
+  font-weight: 700;
+  color: var(--primary-deep);
+}
+
+/* --------------------------------------------------------------------------
+   GIFT 2: VIRTUAL TEDDY BEAR
+   -------------------------------------------------------------------------- */
+.teddy-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.animated-teddy {
+  position: relative;
+  width: 140px;
+  height: 150px;
+  margin: 10px 0;
+}
+
+.teddy-head {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 100px;
+  height: 90px;
+  background: #D4A373;
+  border-radius: 50% 50% 45% 45%;
+  box-shadow: inset -4px -4px 0 rgba(0,0,0,0.1);
+  z-index: 2;
+}
+
+.teddy-ear {
+  position: absolute;
+  top: -10px;
+  width: 32px;
+  height: 32px;
+  background: #D4A373;
+  border-radius: 50%;
+}
+.teddy-ear.left { left: 15px; }
+.teddy-ear.right { right: 15px; }
+
+.teddy-eye {
+  position: absolute;
+  top: 35px;
+  width: 10px;
+  height: 10px;
+  background: #2B1E1A;
+  border-radius: 50%;
+}
+.teddy-eye.left { left: 26px; }
+.teddy-eye.right { right: 26px; }
+
+.teddy-blush {
+  position: absolute;
+  top: 45px;
+  width: 14px;
+  height: 8px;
+  background: #FFA69E;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+.teddy-blush.left { left: 18px; }
+.teddy-blush.right { right: 18px; }
+
+.teddy-muzzle {
+  position: absolute;
+  top: 42px;
+  left: 33px;
+  width: 34px;
+  height: 26px;
+  background: #FAEDCD;
+  border-radius: 50%;
+}
+
+.teddy-nose {
+  position: absolute;
+  top: 5px;
+  left: 11px;
+  width: 12px;
+  height: 8px;
+  background: #2B1E1A;
+  border-radius: 50%;
+}
+
+.teddy-body {
+  position: absolute;
+  bottom: 0;
+  left: 25px;
+  width: 90px;
+  height: 80px;
+  background: #D4A373;
+  border-radius: 40% 40% 50% 50%;
+  z-index: 1;
+}
+
+.teddy-belly {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  width: 50px;
+  height: 45px;
+  background: #FAEDCD;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.teddy-arm {
+  position: absolute;
+  top: 12px;
+  width: 25px;
+  height: 45px;
+  background: #BC8A5F;
+  border-radius: 15px;
+}
+.teddy-arm.left-arm { left: -10px; transform-origin: top right; }
+.teddy-arm.right-arm { right: -10px; transform-origin: top left; }
+
+.speech-bubble {
+  background: white;
+  border: 2px solid var(--primary-light);
+  border-radius: 18px;
+  padding: 12px 20px;
+  position: relative;
+  max-width: 280px;
+  text-align: center;
+  font-family: var(--font-playful);
+}
+
+.speech-bubble::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 10px 10px 10px;
+  border-style: solid;
+  border-color: transparent transparent var(--primary-light) transparent;
+}
+
+.teddy-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   GIFT 3: NEVER-ENDING FLOWERS
+   -------------------------------------------------------------------------- */
+.flower-header-text {
+  font-family: var(--font-handwriting);
+  font-size: 1.5rem;
+  color: var(--primary-pink);
+  margin-bottom: 4px;
+}
+
+.flower-subtext {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.bouquet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.flower-item {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px dashed var(--primary-light);
+  border-radius: 16px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.flower-item:hover {
+  transform: scale(1.05);
+  border-color: var(--primary-pink);
+  background: var(--white);
+}
+
+.flower-icon {
+  font-size: 2.8rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.flower-item.bloomed {
+  border-style: solid;
+  background: linear-gradient(135deg, #FFF0F5 0%, #FFE4E1 100%);
+}
+
+.flower-note {
+  font-family: var(--font-playful);
+  font-size: 0.85rem;
+  color: var(--primary-deep);
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   GIFT 4: CHOCOLATE BOX
+   -------------------------------------------------------------------------- */
+.chocolate-box-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  background: #5C3D2E;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: inset 0 6px 15px rgba(0,0,0,0.4);
+  margin-top: 15px;
+}
+
+.chocolate-cell {
+  background: #3B2317;
+  border-radius: 14px;
+  padding: 18px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.chocolate-cell:hover {
+  transform: scale(1.08);
+}
+
+.chocolate-icon {
+  font-size: 2.4rem;
+  margin-bottom: 6px;
+}
+
+.chocolate-title {
+  font-size: 0.75rem;
+  color: #E8D5C4;
+  font-family: var(--font-playful);
+}
+
+.chocolate-cell.eaten .chocolate-icon {
+  filter: opacity(0.3);
+}
+.chocolate-cell.eaten::after {
+  content: "✨ Sweet!";
+  font-size: 0.7rem;
+  color: #FFCCD5;
+  font-family: var(--font-playful);
+}
+
+/* --------------------------------------------------------------------------
+   GIFT 5: COUPON BOOK
+   -------------------------------------------------------------------------- */
+.coupons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 15px;
+}
+
+.coupon-ticket {
+  background: linear-gradient(135deg, var(--white) 0%, var(--bg-gradient-1) 100%);
+  border: 2px dashed var(--primary-pink);
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(255, 77, 109, 0.1);
+}
+
+.coupon-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.coupon-icon {
+  font-size: 2rem;
+}
+
+.coupon-info h4 {
+  font-family: var(--font-playful);
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.coupon-info p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.coupon-ticket.redeemed {
+  opacity: 0.5;
+  filter: grayscale(0.6);
+}
+
+.coupon-ticket.redeemed::after {
+  content: "REDEEMED 💕";
+  position: absolute;
+  right: 20px;
+  font-family: var(--font-playful);
+  font-weight: 700;
+  color: var(--primary-deep);
+  border: 2px solid var(--primary-deep);
+  padding: 4px 10px;
+  border-radius: 8px;
+  transform: rotate(-8deg);
+}
+
+/* --------------------------------------------------------------------------
+   GIFT 6: MEMORY SCRAPBOOK ALBUM
+   -------------------------------------------------------------------------- */
+.polaroid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin-top: 15px;
+}
+
+.polaroid-card {
+  background: white;
+  padding: 12px 12px 18px 12px;
+  border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  transform: rotate(-2deg);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.polaroid-card:nth-child(even) {
+  transform: rotate(3deg);
+}
+
+.polaroid-card:hover {
+  transform: scale(1.05) rotate(0deg);
+  z-index: 10;
+}
+
+.polaroid-img-box {
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #f0f0f0;
+}
+
+.polaroid-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.polaroid-caption {
+  font-family: var(--font-handwriting);
+  font-size: 1.15rem;
+  color: var(--text-dark);
+  margin-top: 10px;
+  text-align: center;
+}
+
+.polaroid-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Lightbox Fullscreen */
+.lightbox-card {
+  max-width: 600px;
+  padding: 20px;
+}
+.lightbox-card img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   GIFT 7: OUR LOVE SONG PLAYER
+   -------------------------------------------------------------------------- */
+.song-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.music-art-wrapper {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border: 4px solid var(--white);
+}
+
+.album-art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.song-name {
+  font-family: var(--font-playful);
+  font-size: 1.25rem;
+  color: var(--text-dark);
+}
+
+.song-artist {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.song-quote {
+  font-family: var(--font-handwriting);
+  font-size: 1.3rem;
+  color: var(--primary-pink);
+  margin: 5px 0;
+}
+
+/* --------------------------------------------------------------------------
+   GIFT 8: SECRET LOVE LOCK
+   -------------------------------------------------------------------------- */
+.heart-lock-icon {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  animation: floatY 2.5s ease-in-out infinite;
+}
+
+.lock-hint-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 15px;
+}
+
+.lock-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.lock-form input {
+  padding: 12px 18px;
+  border-radius: 30px;
+  border: 2px solid var(--primary-light);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+}
+.lock-form input:focus {
+  border-color: var(--primary-pink);
+}
+
+.lock-error-msg {
+  color: var(--primary-deep);
+  font-family: var(--font-playful);
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+.big-heart-unlock {
+  font-size: 5rem;
+  animation: heartPulse 1.2s infinite;
+}
+
+.secret-reveal-text {
+  font-family: var(--font-handwriting);
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  line-height: 1.6;
+  margin-top: 15px;
+}
+
+/* --------------------------------------------------------------------------
+   9. COUPLE & BESTIE QUIZ SECTION (25 Questions)
+   -------------------------------------------------------------------------- */
+.quiz-section {
+  width: 100%;
+}
+
+.quiz-container {
+  padding: 35px 24px;
+}
+
+.quiz-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.quiz-subtext {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.quiz-progress-bar {
+  width: 100%;
+  max-width: 380px;
+  height: 10px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 10px;
+  margin: 15px auto 6px auto;
+  overflow: hidden;
+  border: 1px solid var(--primary-light);
+}
+
+.quiz-progress-bar div {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-pink) 0%, var(--gold-accent) 100%);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.step-label {
+  font-family: var(--font-playful);
+  font-size: 0.8rem;
+  color: var(--primary-pink);
+  font-weight: 600;
+}
+
+.question-text {
+  font-family: var(--font-playful);
+  font-size: 1.25rem;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.quiz-option-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--primary-light);
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition-fast);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+.quiz-option-btn:hover {
+  background: var(--primary-pink);
+  color: var(--white);
+  border-color: var(--primary-pink);
+  transform: translateY(-2px);
+}
+
+.reaction-box {
+  background: var(--white);
+  border: 2px solid var(--primary-pink);
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+  margin-top: 20px;
+  animation: popUp 0.3s ease-out;
+}
+
+.reaction-emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.reaction-text {
+  font-family: var(--font-playful);
+  font-size: 1.1rem;
+  color: var(--primary-deep);
+  margin-bottom: 16px;
+}
+
+.award-ribbon {
+  background: var(--gold-accent);
+  color: var(--text-dark);
+  font-family: var(--font-playful);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 6px 16px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.quiz-complete {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.quiz-complete h3 {
+  font-family: var(--font-playful);
+  font-size: 1.6rem;
+  color: var(--primary-pink);
+  margin-bottom: 10px;
+}
+
+.award-desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.award-quote {
+  font-family: var(--font-handwriting);
+  font-size: 1.35rem;
+  color: var(--text-dark);
+  margin: 18px 0;
+  line-height: 1.5;
+}
+
+.award-footer {
+  font-family: var(--font-playful);
+  font-size: 0.95rem;
+  color: var(--primary-deep);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   10. REASONS I LOVE YOU MACHINE
+   -------------------------------------------------------------------------- */
+.machine-card {
+  padding: 35px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.machine-icon {
+  font-size: 3.5rem;
+}
+
+.reason-display-box {
+  background: white;
+  border: 2px solid var(--primary-light);
+  border-radius: 20px;
+  padding: 24px 30px;
+  width: 100%;
+  max-width: 500px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.reason-display-box p {
+  font-family: var(--font-handwriting);
+  font-size: 1.45rem;
+  color: var(--primary-deep);
+  line-height: 1.4;
+}
+
+.heart-sparkle-left, .heart-sparkle-right {
+  position: absolute;
+  top: 10px;
+  font-size: 1.2rem;
+}
+.heart-sparkle-left { left: 12px; }
+.heart-sparkle-right { right: 12px; }
+
+/* --------------------------------------------------------------------------
+   11. PICK A SURPRISE (MYSTERY BOXES)
+   -------------------------------------------------------------------------- */
+.mystery-section {
+  text-align: center;
+}
+
+.mystery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.mystery-box {
+  padding: 30px 20px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.mystery-box:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: var(--primary-pink);
+}
+
+.box-icon {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.mystery-box h4 {
+  font-family: var(--font-playful);
+  font-size: 1.2rem;
+  color: var(--text-dark);
+}
+
+.mystery-box p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   12. FUTURE MEMORIES
+   -------------------------------------------------------------------------- */
+.future-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.future-polaroid {
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px dashed var(--primary-soft);
+  border-radius: 12px;
+  padding: 20px 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  transition: var(--transition-fast);
+}
+
+.future-polaroid:hover {
+  background: white;
+  border-style: solid;
+  transform: translateY(-4px);
+}
+
+.future-polaroid h4 {
+  font-family: var(--font-playful);
+  font-size: 1.05rem;
+  color: var(--primary-pink);
+  margin-bottom: 6px;
+}
+
+.future-polaroid p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   13. FINAL SURPRISE & REPLAY
+   -------------------------------------------------------------------------- */
+.final-banner-section {
+  text-align: center;
+}
+
+.final-card {
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.glowing-heart-icon {
+  font-size: 4rem;
+  animation: heartPulse 1.2s infinite;
+}
+
+.final-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(25, 10, 20, 0.92);
+  backdrop-filter: blur(14px);
+  z-index: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.final-content-box {
+  text-align: center;
+  max-width: 600px;
+  color: var(--white);
+}
+
+.final-text-seq p {
+  opacity: 0;
+  animation: revealLine 1s ease-out forwards;
+}
+
+.f-line-1 { font-family: var(--font-handwriting); font-size: 2rem; color: #FFCCD5; animation-delay: 0.5s; }
+.f-line-2 { font-family: var(--font-playful); font-size: 2.2rem; font-weight: 700; color: #FF4D6D; margin: 15px 0; animation-delay: 1.8s; }
+.final-name { font-family: var(--font-handwriting); font-size: 2.8rem; color: var(--gold-accent); margin: 20px 0; opacity: 0; animation: revealLine 1s ease-out 3s forwards; }
+.f-line-3 { font-size: 1.2rem; color: #FFE4E1; animation-delay: 4.2s; }
+.f-line-4 { font-family: var(--font-handwriting); font-size: 1.8rem; color: #FF85A1; margin-top: 10px; animation-delay: 5.4s; }
+
+/* --------------------------------------------------------------------------
+   MOBILE RESPONSIVENESS
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .welcome-card h1 { font-size: 2.2rem; }
+  .hero-title { font-size: 1.7rem; }
+  .section-heading { font-size: 1.6rem; }
+  .gifts-grid { grid-template-columns: 1fr; }
+  .options-grid { grid-template-columns: 1fr; }
+  .chocolate-box-grid { grid-template-columns: repeat(2, 1fr); }
+  .final-name { font-size: 2.1rem; }
+}
