@@ -4,10 +4,75 @@
 
 import { CONFIG } from '../../config.js';
 
+let unlockedGifts = new Set();
+let hasRedeemedCoupon = false;
+let redeemedCouponTitle = "";
+let notifyProgressCallback = null;
+
+export function resetGiftsState() {
+  unlockedGifts.clear();
+  hasRedeemedCoupon = false;
+  redeemedCouponTitle = "";
+
+  // Remove unlocked-card badges
+  document.querySelectorAll('.gift-card').forEach(card => {
+    card.classList.remove('unlocked-card');
+  });
+
+  // Reset Envelope (Gift 1)
+  const envelope = document.getElementById('envelope');
+  const envelopeSeal = document.getElementById('envelope-seal');
+  if (envelope) envelope.classList.remove('open');
+  if (envelopeSeal) envelopeSeal.style.display = 'block';
+
+  // Reset Teddy Bear (Gift 2)
+  const teddySpeech = document.getElementById('teddy-speech');
+  if (teddySpeech) {
+    teddySpeech.innerHTML = `<p>${CONFIG.teddy.greeting}</p><p>${CONFIG.teddy.subtext}</p>`;
+  }
+
+  // Reset Flowers (Gift 3)
+  document.querySelectorAll('.flower-item').forEach(item => {
+    item.classList.remove('bloomed', 'bloom-anim');
+    const iconEl = item.querySelector('.flower-icon');
+    const noteEl = item.querySelector('.flower-note');
+    if (iconEl) iconEl.textContent = '🌷';
+    if (noteEl) noteEl.classList.add('hidden');
+  });
+
+  // Reset Chocolates (Gift 4)
+  document.querySelectorAll('.chocolate-cell').forEach(cell => {
+    cell.classList.remove('eaten');
+  });
+
+  // Reset Coupon Book (Gift 5)
+  document.querySelectorAll('.coupon-ticket').forEach(ticket => {
+    ticket.classList.remove('redeemed');
+  });
+  document.querySelectorAll('.redeem-coupon-btn').forEach(b => {
+    b.textContent = 'Redeem 🎟️';
+    b.disabled = false;
+    b.style.opacity = '1';
+  });
+
+  // Reset Secret Love Lock (Gift 7)
+  const lockError = document.getElementById('lock-error');
+  const lockLockedContent = document.getElementById('lock-locked-content');
+  const lockUnlockedContent = document.getElementById('lock-unlocked-content');
+  const secretInput = document.getElementById('secret-input');
+
+  if (lockError) lockError.classList.add('hidden');
+  if (lockLockedContent) lockLockedContent.classList.remove('hidden');
+  if (lockUnlockedContent) lockUnlockedContent.classList.add('hidden');
+  if (secretInput) secretInput.value = '';
+
+  if (notifyProgressCallback) {
+    notifyProgressCallback(0);
+  }
+}
+
 export function initGiftsLogic(canvasEngine, audioPlayer, onGiftUnlockedCallback) {
-  const unlockedGifts = new Set();
-  let hasRedeemedCoupon = false;
-  let redeemedCouponTitle = "";
+  notifyProgressCallback = onGiftUnlockedCallback;
 
   // Helper to mark gift as unlocked
   function markGiftUnlocked(giftId) {

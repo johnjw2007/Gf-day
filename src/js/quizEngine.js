@@ -28,6 +28,14 @@ export class QuizEngine {
     this.renderQuestion();
   }
 
+  resetQuiz() {
+    this.currentIndex = 0;
+    if (this.questionBox) this.questionBox.classList.remove('hidden');
+    if (this.reactionModal) this.reactionModal.classList.add('hidden');
+    if (this.completeCard) this.completeCard.classList.add('hidden');
+    this.renderQuestion();
+  }
+
   initListeners() {
     if (this.nextBtn) {
       this.nextBtn.addEventListener('click', () => {

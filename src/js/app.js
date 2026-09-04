@@ -5,7 +5,7 @@
 import { CanvasEngine } from './canvasParticles.js';
 import { AudioPlayer } from './audioPlayer.js';
 import { loadConfigIntoDOM } from './configLoader.js';
-import { initGiftsLogic } from './giftsLogic.js';
+import { initGiftsLogic, resetGiftsState } from './giftsLogic.js';
 import { QuizEngine } from './quizEngine.js';
 import { initLoveMachine } from './loveMachine.js';
 import { initMysteryBoxes } from './mysteryBoxes.js';
@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const finalSurpriseBtn = document.getElementById('final-surprise-btn');
   const finalGrandScreen = document.getElementById('final-grand-screen');
   const restartStoryBtn = document.getElementById('restart-story-btn');
+  const globalResetBtn = document.getElementById('global-reset-btn');
 
   // Welcome Screen CTA Click
   if (openSurpriseBtn) {
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Initialize 8 Gifts Interactions
+  // Initialize Gifts Interactions
   initGiftsLogic(canvasEngine, audioPlayer, updateProgress);
 
   // Initialize Modals Open/Close Handlers
@@ -113,13 +114,65 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initialize Quiz Engine
-  new QuizEngine(canvasEngine);
+  const quizEngine = new QuizEngine(canvasEngine);
 
   // Initialize Love Machine
   initLoveMachine(canvasEngine);
 
   // Initialize Mystery Boxes
   initMysteryBoxes(canvasEngine);
+
+  // MASTER RESET FUNCTION
+  function resetEverything() {
+    // 1. Reset Gifts State (envelope, teddy, flowers, chocolates, coupons, secret lock)
+    resetGiftsState();
+
+    // 2. Reset Quiz Engine
+    quizEngine.resetQuiz();
+
+    // 3. Close any open modals
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+      modal.classList.add('hidden');
+    });
+
+    // 4. Hide Final Surprise overlay
+    if (finalGrandScreen) finalGrandScreen.classList.add('hidden');
+
+    // 5. Reset Reasons Display
+    const reasonText = document.getElementById('reason-text');
+    if (reasonText) reasonText.textContent = "Click the button below to see why you're so loved... 💕";
+
+    // 6. Reset Gift Box Lid
+    const lid = mainGiftBox ? mainGiftBox.querySelector('.gift-box-lid') : null;
+    if (lid) lid.style.transform = 'none';
+
+    // 7. Show Welcome Screen again
+    if (welcomeScreen) {
+      welcomeScreen.classList.remove('hidden');
+      welcomeScreen.style.opacity = '1';
+      welcomeScreen.style.transform = 'scale(1)';
+    }
+
+    // 8. Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    canvasEngine.triggerConfetti();
+  }
+
+  // Bind Global Reset Button & Final Surprise Restart Button
+  if (globalResetBtn) {
+    globalResetBtn.addEventListener('click', () => {
+      if (confirm("Reset all gifts and start the story again from the beginning? 💕")) {
+        resetEverything();
+      }
+    });
+  }
+
+  if (restartStoryBtn) {
+    restartStoryBtn.addEventListener('click', () => {
+      resetEverything();
+    });
+  }
 
   // Section 13: Grand Final Surprise
   if (finalSurpriseBtn) {
@@ -129,20 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
         canvasEngine.startRosePetalShower();
         canvasEngine.triggerBigHeartFireworks();
       }
-    });
-  }
-
-  // Section 14: Start Story Again (Replay)
-  if (restartStoryBtn) {
-    restartStoryBtn.addEventListener('click', () => {
-      if (finalGrandScreen) finalGrandScreen.classList.add('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      // Reset gift box lid
-      const lid = mainGiftBox ? mainGiftBox.querySelector('.gift-box-lid') : null;
-      if (lid) lid.style.transform = 'none';
-
-      canvasEngine.triggerConfetti();
     });
   }
 });
